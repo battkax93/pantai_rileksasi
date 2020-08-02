@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_main_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="10pt"
+                tools:text="Timer" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/bgPlayer1"
+                            android:layout_width="350dp"
+                            android:layout_height="200dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageView
+                            android:id="@+id/ivPlayer1"
+                            android:layout_width="125dp"
+                            android:layout_height="125dp"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/ic_play"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvVol1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:visibility="invisible"
+                        android:text="@string/vol" />
+
+                    <SeekBar
+                        android:id="@+id/skPlayer1"
+                        style="@style/seekTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/ivPlayer2"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/a"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/ivPlayer3"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/a"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

@@ -10,4 +10,14 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="vol">100</string>
+    <string name="setting_timer">ATUR WAKTU PUTAR</string>
+    <string name="simpan">SIMPAN</string>
+
+    <string-array name="timer">
+        <item>1 menit</item>
+        <item>3 menit</item>
+        <item>6 menit</item>
+        <item>10 menit</item>
+        <item>15 menit</item>
+    </string-array>
 </resources>

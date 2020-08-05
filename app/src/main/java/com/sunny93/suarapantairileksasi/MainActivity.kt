@@ -2,14 +2,17 @@ package com.sunny93.suarapantairileksasi
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,9 +23,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sound2: MediaPlayer
     private lateinit var sound3: MediaPlayer
 
-    var startTime: Long = 10_000L
-    var timer = startTime
-    lateinit var countDownTimer: CountDownTimer
+    var timer: Long = 0
+    var isCountDown: Boolean = false
+    private lateinit var countDownTimer: CountDownTimer
+
+    private var dataTime: Long = 0
+    var prefTimeData: String = "TIME DATA"
+    private lateinit var preference: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +37,16 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
+    override fun onResume() {
+        super.onResume()
+        dataTime = preference.getLong(prefTimeData, 0)
+        timer = dataTime
+        println("onResume $dataTime")
+    }
+
     private fun init() {
+        preference = this.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
+
         sound1 = MediaPlayer.create(this, R.raw.pelni)
         sound2 = MediaPlayer.create(this, R.raw.ombak)
         sound3 = MediaPlayer.create(this, R.raw.camar)
@@ -40,24 +56,10 @@ class MainActivity : AppCompatActivity() {
         ivPlayer3.setOnClickListener { playPlayer(3) }
 
         Picasso.get().load(R.drawable.a).into(bgPlayer1)
+        Picasso.get().load(R.drawable.a).into(bgPlayer2)
+        Picasso.get().load(R.drawable.a).into(bgPlayer3)
 
-        skPlayer1.progress = 100
-        val audioManager =
-            applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        skPlayer1.max = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        skPlayer1.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            @SuppressLint("SetTextI18n")
-            override fun onProgressChanged(
-                seekBar: SeekBar,
-                progress: Int,
-                fromUser: Boolean
-            ) {
-                tvVol1.text = "Media Volume : $progress";
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
-            }
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
-        })
+        fab.setOnClickListener { TimerDialog(this).show() }
     }
 
     private fun playPlayer(i: Int) {
@@ -65,41 +67,47 @@ class MainActivity : AppCompatActivity() {
             1 -> if (sound1.isPlaying) {
                 sound1.pause()
                 ivPlayer1.setImageResource(R.drawable.ic_play)
-                skPlayer1.visibility = View.INVISIBLE
-                tvVol1.visibility = View.INVISIBLE
             } else {
                 sound1.start()
                 sound1.isLooping = true
                 ivPlayer1.setImageResource(R.drawable.ic_pause)
-                skPlayer1.visibility = View.VISIBLE
-                tvVol1.visibility = View.VISIBLE
-                startCountdown()
+                if(!isCountDown) startCountdown()
             }
             2 -> if (sound2.isPlaying) {
                 sound2.pause()
+                ivPlayer2.setImageResource(R.drawable.ic_play)
             } else {
                 sound2.start()
                 sound2.isLooping = true
+                ivPlayer2.setImageResource(R.drawable.ic_pause)
+                if(!isCountDown) startCountdown()
             }
             3 -> if (sound3.isPlaying) {
                 sound3.pause()
+                ivPlayer3.setImageResource(R.drawable.ic_play)
             } else {
                 sound3.start()
                 sound3.isLooping = true
+                ivPlayer3.setImageResource(R.drawable.ic_pause)
+                if(!isCountDown) startCountdown()
             }
         }
     }
 
     private fun startCountdown() {
+        isCountDown = true
         tv_main_timer.visibility = View.VISIBLE
         countDownTimer = object : CountDownTimer(timer, 1000) {
             override fun onFinish() {
+                timer = 0
                 tv_main_timer.visibility = View.GONE
-                sound1.stop()
+                if(sound1.isPlaying) sound1.pause()
+                if(sound2.isPlaying) sound2.pause()
+                if(sound3.isPlaying) sound3.pause()
                 ivPlayer1.setImageResource(R.drawable.ic_play)
-                skPlayer1.visibility = View.INVISIBLE
-                tvVol1.visibility = View.INVISIBLE
+                isCountDown = false
             }
+
             override fun onTick(millisUntilFinished: Long) {
                 timer = millisUntilFinished
                 setText()

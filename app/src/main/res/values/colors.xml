@@ -10,4 +10,8 @@
     <color name="palette3">#F6E3D4</color>
 
 
+    <color name="white">#FFFEFD</color>
+    <color name="text_color">#595959</color>
+
+
 </resources>

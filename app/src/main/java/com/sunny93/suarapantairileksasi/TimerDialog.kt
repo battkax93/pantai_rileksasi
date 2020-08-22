@@ -2,13 +2,13 @@ package com.sunny93.suarapantairileksasi
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Html
-import android.util.Log
 import android.view.View
 import android.view.Window
 import kotlinx.android.synthetic.main.dialog_timer.*
+
 
 @Suppress("DEPRECATION")
 class TimerDialog(context: Context) : Dialog(context) {
@@ -27,6 +27,7 @@ class TimerDialog(context: Context) : Dialog(context) {
     }
 
     private fun init() {
+        val intent = Intent()
         preference = context.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
         val editor = preference.edit()
 

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/palette2"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_pasir"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:visibility="gone"
         app:srcCompat="@android:drawable/ic_menu_help" />
 
     <ScrollView
@@ -27,132 +28,145 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_main_timer"
+            <LinearLayout
+                android:id="@+id/vTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_main_timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:shadowColor="@color/text_color"
+                    android:textColor="@color/white"
+                    android:textSize="14pt"
+                    android:textStyle="bold"
+                    tools:text="Timer" />
+
+                <Button
+                    android:id="@+id/bStopTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/blue"
+                    android:text="@string/stop_timer"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:clipChildren="true"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/bgPlayer1"
+                    android:layout_width="350dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/round_outline"
+                    android:clickable="true"
+                    android:focusable="true"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:id="@+id/ivPlayer1"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_play"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:clipChildren="true"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/bgPlayer2"
+                    android:layout_width="350dp"
+                    android:layout_height="175dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:id="@+id/ivPlayer2"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/round_outline"
+                    app:srcCompat="@drawable/ic_play"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:clipChildren="true"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/bgPlayer3"
+                    android:layout_width="350dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/round_outline"
+                    android:clickable="true"
+                    android:focusable="true"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:id="@+id/ivPlayer3"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_play"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/bStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
                 android:visibility="gone"
-                android:textSize="14pt"
-                android:textStyle="bold"
-                android:shadowColor="@color/text_color"
-                android:textColor="@color/white"
-                tools:text="Timer" />
-
-            <androidx.cardview.widget.CardView
+                android:background="@color/blue"
+                android:text="@string/stop_all"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/bPlay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                app:cardCornerRadius="10dp">
+                android:background="@color/blue"
+                android:text="@string/play_all"
+                android:textColor="@color/white" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/bgPlayer1"
-                            android:layout_width="350dp"
-                            android:layout_height="200dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageView
-                            android:id="@+id/ivPlayer1"
-                            android:layout_width="125dp"
-                            android:layout_height="125dp"
-                            android:layout_centerInParent="true"
-                            app:srcCompat="@drawable/ic_play"
-                            tools:ignore="ContentDescription" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                app:cardCornerRadius="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/bgPlayer2"
-                            android:layout_width="350dp"
-                            android:layout_height="200dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageView
-                            android:id="@+id/ivPlayer2"
-                            android:layout_width="125dp"
-                            android:layout_height="125dp"
-                            android:layout_centerInParent="true"
-                            app:srcCompat="@drawable/ic_play"
-                            tools:ignore="ContentDescription" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                app:cardCornerRadius="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/bgPlayer3"
-                            android:layout_width="350dp"
-                            android:layout_height="200dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageView
-                            android:id="@+id/ivPlayer3"
-                            android:layout_width="125dp"
-                            android:layout_height="125dp"
-                            android:layout_centerInParent="true"
-                            app:srcCompat="@drawable/ic_play"
-                            tools:ignore="ContentDescription" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+                android:layout_marginTop="25dp"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/add_banner_id" />
 
         </LinearLayout>
 

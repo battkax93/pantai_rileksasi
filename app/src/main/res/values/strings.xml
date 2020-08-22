@@ -12,6 +12,13 @@
     <string name="vol">100</string>
     <string name="setting_timer">ATUR WAKTU PUTAR</string>
     <string name="simpan">SIMPAN</string>
+    <string name="stop_timer">STOP TIMER</string>
+    <string name="stop_all">STOP ALL</string>
+    <string name="play_all">PLAY ALL</string>
+
+    <!--adds demo-->
+    <string name="add_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="add_ints_id">ca-app-pub-3940256099942544/1033173712</string>
 
     <string-array name="timer">
         <item>1 menit</item>
